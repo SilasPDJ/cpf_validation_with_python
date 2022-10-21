@@ -65,7 +65,7 @@ def valida_cpf(cpf):
         print('CPFcurtimuitoGERADORminha-versão tem que ser numérico apenas e ter apenas 11 caracteres...')
 
 
-cpf = '19261159451'
+cpf = '01234566688'
 if valida_cpf(cpf):
     print(f'O CPFcurtimuitoGERADORminha-versão: {cpf} é VÁLIDO')
 else:
