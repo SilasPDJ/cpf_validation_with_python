@@ -19,18 +19,29 @@ e multiplica por (11, ..., 2) cada dígito
 # obtém ÚLTIMO DIGITO
 """
 # if cpf != novo_cpf
+# static methods belong to class, the non-static to the objetcts
 
 
 class CPF:
 
-    def __init__(self):
+    def __init__(self, cpf=None, show_message=True):
         """
         Creator: Silas B. Ferreira
-        """
         # GERADOR DE CPFcurtimuitoGERADORminha-versão
+        """
+        if cpf is None:
+            cpf = self.generate_cpf()
+        else:
+            "validar"
+        self.cpf = cpf
+
+        self.cpf_is_valid = self.is_valid(cpf)
+
         # print(self.generate())
-        self.__valid_or_invalid_msg(self.generate_cpf())
-        self.__valid_or_invalid_msg('01234566688')
+        if show_message:
+            self.__is_valid_msg()
+
+    # TODO: formatador e desformatador
 
     def generate_cpf(self):
         # já gera válido
@@ -46,18 +57,19 @@ class CPF:
 
         cpf = cpf_will_be.replace(' ', '')
 
-        cpf_10d = self.valida_cpf(cpf)
+        cpf_10d = self.__valida_generate_cpf(cpf)
         # print('10 dígitos...')
         cpf += str(cpf_10d)
 
-        cpf_11d = self.valida_cpf(cpf)
+        cpf_11d = self.__valida_generate_cpf(cpf)
         # print('11 dígitos...')
         cpf += str(cpf_11d)
 
         cpf_final = cpf
         return cpf_final
 
-    def valida_cpf(self, cpf):
+    @staticmethod
+    def __valida_generate_cpf(cpf):
         cont_mult = len(cpf) + 1
         list_res = []
         for en, digit in enumerate(cpf):
@@ -74,23 +86,22 @@ class CPF:
 
         if final_res > 9:
             final_res = 0
-        print("final res:")
-        input(final_res)
         return final_res
 
     # ACIMA ESTÁ UM GERADOR
     """~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""
     # ABAIXO ESTÁ UM VALIDADOR
 
-    def __valid_or_invalid_msg(self, cpf):
+    def __is_valid_msg(self):
         # EXECUTA
-        if self.valid_or_invalid(cpf):
-            print(f'O CPF: {cpf} é VÁLIDO')
+        if self.is_valid(self.cpf):
+            print(f'O CPF: {self.cpf} é VÁLIDO')
         else:
-            print(f'O CPF: {cpf} NÃO é VÁLIDO')
+            print(f'O CPF: {self.cpf} NÃO é VÁLIDO')
         # valida_cpf(cpf)
 
-    def valid_or_invalid(self, cpf):
+    @staticmethod
+    def is_valid(cpf):
         # valid or invalid
         """
         :param cpf: CPFcurtimuitoGERADORminha-versão...
@@ -137,4 +148,5 @@ class CPF:
                 'CPFcurtimuitoGERADORminha-versão tem que ser numérico apenas e ter apenas 11 caracteres...')
 
 
-CPF()
+cpf1 = CPF()
+print(cpf1.cpf)
