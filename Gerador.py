@@ -30,7 +30,7 @@ class CPF:
         # GERADOR DE CPFcurtimuitoGERADORminha-versão
         # print(self.generate())
         self.__valid_or_invalid_msg(self.generate_cpf())
-        self.__valid_or_invalid_msg('44500573842')
+        self.__valid_or_invalid_msg('01234566688')
 
     def generate_cpf(self):
         # já gera válido
