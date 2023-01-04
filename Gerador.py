@@ -22,6 +22,9 @@ e multiplica por (11, ..., 2) cada dígito
 # static methods belong to class, the non-static to the objetcts
 
 
+import sys
+
+
 class CPF:
 
     def __init__(self, cpf=None, show_message=True):
@@ -70,14 +73,14 @@ class CPF:
 
     @staticmethod
     def __valida_generate_cpf(cpf):
-        cont_mult = len(cpf) + 1
+        d_verificador = len(cpf) + 1
         list_res = []
         for en, digit in enumerate(cpf):
-            cont_mult = len(cpf)+1 - en
+            d_verificador = len(cpf)+1 - en
             # print(cont_mult)
             digit = int(digit)
 
-            res = digit * cont_mult
+            res = digit * d_verificador
             list_res.append(res)
 
         sum_res = sum(list_res)
@@ -148,5 +151,9 @@ class CPF:
                 'CPFcurtimuitoGERADORminha-versão tem que ser numérico apenas e ter apenas 11 caracteres...')
 
 
-cpf1 = CPF()
-print(cpf1.cpf)
+# cpf1 = CPF()
+# print(cpf1.cpf)
+c = sys.argv[-1]
+
+
+print(CPF.is_valid(c or "72053220022"))
